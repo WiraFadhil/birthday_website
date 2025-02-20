@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ucapan Ulang Tahun</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('background.jpg') no-repeat center center/cover;
+            font-family: Arial, sans-serif;
+            color: white;
+            background-color: grey;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .profile {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .profile img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .message-box {
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .message-box:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        #message-container {
+            border: 1px solid white;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 350px;
+            overflow-y: auto;
+            max-height: 200px;
+        }
+
+        #typed-text {
+            white-space: pre-line;
+            word-wrap: break-word;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="profile">
+            <img src="https://i.pinimg.com/originals/a2/b5/34/a2b534cbd581dccd3e7c20c756e6cb1b.gif" alt="Avatar">
+        </div>
+        <h2>Hai, Saskia Meysa ✨</h2>
+        <div id="message-container">
+            <div class="message-box">
+                <p id="message-text"
+                    style="text-align: center; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                    Aku Ada Sesuatu Nih 🤣❤️
+                </p>
+            </div>
+            <p onclick="showMessage()" id="click-text" style="text-align : right; font-size : 10px;"><u>Klik untuk
+                    lanjut</u></p>
+        </div>
+        <audio id="myAudio" autoplay loop>
+            <source src="happy_birthay.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        function showMessage() {
+            const message = "Selamat ulang tahun yah kia semoga panjang umur sehat selalu dan jangan lupa untuk tetap berbakti sama orang tua, kamu sudah 19 tahun sudah dewasa semangat deh kejar cita-cita kamu, alay deh aku kek gini hahaha, yah pokoknya tetep semangat buat kamu oke!, jadi teringat deh pertama kali ketemu di anon sumpah random bnget pembahasannya mana aku kek malu bnget jejak digital yang ada di tele jangan pernah kirim itu lagi malu soalnya";
+
+            const messageContainer = document.getElementById("message-container");
+            const messageText = document.getElementById("message-text");
+            const clickText = document.getElementById("click-text");
+
+            // Mengubah konten div message-container
+            messageContainer.innerHTML = `<p id="typed-text"></p>`;
+            const typedText = document.getElementById("typed-text");
+
+            let index = 0;
+
+            function typeWriter() {
+                if (index < message.length) {
+                    typedText.innerHTML += message.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, 50); // Efek mengetik lebih lambat
+                }
+            }
+
+            typeWriter();
+        }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let audio = document.getElementById("myAudio");
+            let savedTime = localStorage.getItem("audioTime");
+
+            if (savedTime) {
+                audio.currentTime = savedTime;
+            }
+
+            audio.volume = 0.5; // Volume bisa diatur
+
+            audio.addEventListener("timeupdate", function () {
+                localStorage.setItem("audioTime", audio.currentTime);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
